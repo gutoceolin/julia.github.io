@@ -127,6 +127,152 @@
       padding: 5rem 1.5rem;
     }
 
+    /* ── VARAL ── */
+    #fotos {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 50%, var(--bg) 100%);
+      overflow: hidden;
+    }
+
+    .section-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.5rem, 7vw, 3.5rem);
+      color: var(--rose);
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+
+    .varal-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1020px;
+      padding-top: 72px;
+    }
+
+    .varal-rope {
+      position: absolute;
+      top: 38px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        rgba(90,55,10,0) 0%,
+        #8B6010 6%,
+        #d4a843 30%,
+        #e8c060 50%,
+        #d4a843 70%,
+        #8B6010 94%,
+        rgba(90,55,10,0) 100%
+      );
+      border-radius: 50%;
+      box-shadow: 0 3px 10px rgba(0,0,0,.7), 0 1px 0 rgba(255,220,100,.15);
+    }
+
+    .varal-photos {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .varal-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform-origin: top center;
+      animation: swing var(--sw-dur, 4s) var(--sw-del, 0s) ease-in-out infinite;
+      opacity: 0;
+      transition: opacity .8s ease;
+    }
+
+    .varal-item.visible { opacity: 1; }
+
+    @keyframes swing {
+      0%, 100% { transform: rotate(var(--rot, -2deg)); }
+      50%       { transform: rotate(calc(var(--rot, -2deg) * -0.55)); }
+    }
+
+    /* pregador */
+    .clip {
+      width: 14px;
+      height: 22px;
+      background: linear-gradient(160deg, #d4a020, #7a4e10);
+      border-radius: 3px 3px 1px 1px;
+      box-shadow: 0 3px 8px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.2);
+      position: relative;
+      z-index: 3;
+      flex-shrink: 0;
+    }
+
+    .clip::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 1px;
+      right: 1px;
+      height: 2px;
+      background: rgba(0,0,0,.25);
+      border-radius: 1px;
+    }
+
+    .clip::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 8px;
+      background: #5c3a0e;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.5);
+    }
+
+    .string {
+      width: 1.5px;
+      height: 26px;
+      background: linear-gradient(180deg, #c8952a 0%, rgba(200,149,42,.25) 100%);
+      flex-shrink: 0;
+    }
+
+    .polaroid {
+      background: #f7f2f2;
+      padding: .9rem .9rem 2.8rem;
+      border-radius: 2px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.65), 2px 2px 0 rgba(0,0,0,.1);
+      position: relative;
+      width: 185px;
+      transition: box-shadow .3s ease, filter .3s ease;
+    }
+
+    .polaroid:hover {
+      filter: brightness(1.06);
+      box-shadow: 0 22px 65px rgba(0,0,0,.75);
+    }
+
+    .polaroid-img {
+      width: 100%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #ddd;
+    }
+
+    .polaroid-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .polaroid-caption {
+      text-align: center;
+      margin-top: .7rem;
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.12rem;
+      color: #3a2828;
+    }
+
     /* ── CARTA ── */
     .letter-label {
       font-size: .75rem;
@@ -196,77 +342,6 @@
 
     .letter-sign.visible { opacity: 1; }
 
-    /* ── FOTOS ── */
-    #fotos {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 50%, var(--bg) 100%);
-    }
-
-    .section-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(2.5rem, 7vw, 3.5rem);
-      color: var(--rose);
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-
-    .photos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 2rem;
-      max-width: 860px;
-      width: 100%;
-    }
-
-    .polaroid {
-      background: #f5f0f0;
-      padding: 1rem 1rem 3rem;
-      border-radius: 3px;
-      box-shadow: 0 8px 30px rgba(0,0,0,.55), 3px 3px 0 rgba(0,0,0,.08);
-      transform: rotate(var(--rot, -2deg));
-      transition: transform .3s ease, box-shadow .3s ease;
-      position: relative;
-    }
-
-    .polaroid:hover {
-      transform: rotate(0deg) scale(1.05);
-      box-shadow: 0 20px 60px rgba(0,0,0,.65);
-      z-index: 2;
-    }
-
-    .polaroid-img {
-      width: 100%;
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: #ddd;
-    }
-
-    .polaroid-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .polaroid-img .ph {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #e8d5e0, #d0c0d8);
-      color: #aaa;
-      font-size: .8rem;
-      font-family: 'Outfit', sans-serif;
-    }
-
-    .polaroid-caption {
-      text-align: center;
-      margin-top: .7rem;
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.15rem;
-      color: #444;
-    }
-
     /* ── FINALE ── */
     .finale-msg {
       font-family: 'Great Vibes', cursive;
@@ -328,9 +403,14 @@
 
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .letter-card { padding: 2rem 1.5rem; }
-      .photos-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+      .varal-photos { gap: 1.4rem; }
+      .polaroid { width: 135px; }
+      .polaroid-caption { font-size: .95rem; }
+      .varal-wrapper { padding-top: 60px; }
+      .varal-rope { top: 30px; }
+      .string { height: 20px; }
     }
   </style>
 </head>
@@ -348,7 +428,54 @@
 <!-- MAIN -->
 <div id="main">
 
-  <!-- 1. A Carta -->
+  <!-- 1. Fotos (varal) -->
+  <section id="fotos">
+    <h2 class="section-title fade-in">Nossas memórias</h2>
+    <div class="varal-wrapper">
+      <div class="varal-rope"></div>
+      <div class="varal-photos">
+
+        <div class="varal-item" style="--rot:-3deg; --sw-dur:4.2s; --sw-del:0s">
+          <div class="clip"></div>
+          <div class="string"></div>
+          <div class="polaroid">
+            <div class="polaroid-img"><img src="fotos/foto1.jpg" alt="nossa primeira fotinha"></div>
+            <div class="polaroid-caption">nossa primeira fotinha ♡</div>
+          </div>
+        </div>
+
+        <div class="varal-item" style="--rot:2.5deg; --sw-dur:3.6s; --sw-del:0.4s">
+          <div class="clip"></div>
+          <div class="string"></div>
+          <div class="polaroid">
+            <div class="polaroid-img"><img src="fotos/foto2.jpg" alt="minha favorita"></div>
+            <div class="polaroid-caption">minha favorita ♡</div>
+          </div>
+        </div>
+
+        <div class="varal-item" style="--rot:-1.5deg; --sw-dur:4.8s; --sw-del:0.8s">
+          <div class="clip"></div>
+          <div class="string"></div>
+          <div class="polaroid">
+            <div class="polaroid-img"><img src="fotos/foto3.jpg" alt="viagem mais que especial"></div>
+            <div class="polaroid-caption">viagem mais que especial ♡</div>
+          </div>
+        </div>
+
+        <div class="varal-item" style="--rot:3deg; --sw-dur:3.9s; --sw-del:1.2s">
+          <div class="clip"></div>
+          <div class="string"></div>
+          <div class="polaroid">
+            <div class="polaroid-img"><img src="fotos/foto4.jpg" alt="festas com você são melhores"></div>
+            <div class="polaroid-caption">festas com você são melhores ♡</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. A Carta -->
   <section id="carta">
     <div class="letter-wrap">
       <p class="letter-label">Uma cartinha para você</p>
@@ -357,42 +484,6 @@
         <div class="letter-body" id="letterBody"></div>
         <div class="letter-sign" id="letterSign">Com amor, Augusto ♡</div>
       </div>
-    </div>
-  </section>
-
-  <!-- 2. Fotos -->
-  <section id="fotos">
-    <h2 class="section-title fade-in">Nossas memórias</h2>
-    <div class="photos-grid">
-
-      <div class="polaroid fade-in" style="--rot:-3deg">
-        <div class="polaroid-img">
-          <img src="fotos/foto1.jpg" alt="nossa primeira">
-        </div>
-        <div class="polaroid-caption">nossa primeira</div>
-      </div>
-
-      <div class="polaroid fade-in" style="--rot:2deg">
-        <div class="polaroid-img">
-          <img src="fotos/foto2.jpg" alt="juntos">
-        </div>
-        <div class="polaroid-caption">juntos</div>
-      </div>
-
-      <div class="polaroid fade-in" style="--rot:-1deg">
-        <div class="polaroid-img">
-          <img src="fotos/foto3.jpg" alt="curtindo">
-        </div>
-        <div class="polaroid-caption">curtindo</div>
-      </div>
-
-      <div class="polaroid fade-in" style="--rot:3deg">
-        <div class="polaroid-img">
-          <img src="fotos/foto4.jpg" alt="especiais">
-        </div>
-        <div class="polaroid-caption">especiais</div>
-      </div>
-
     </div>
   </section>
 
@@ -436,10 +527,6 @@
     }, 350);
   }
 
-  /* ── TEXTO DA CARTA ──────────────────────────────────────────────
-     Edite este texto com a sua mensagem real para a Julia.
-     Use \n para quebrar parágrafo.
-  ────────────────────────────────────────────────────────────────── */
   const CARTA = `Feliz aniversário, meu amor. Não consigo nem imaginar palavras que possam descrever o quanto eu te amo. Quero te desejar as melhores coisas, sempre. Quero estar com você para toda a vida e formar nossa família da forma mais linda possível. Você é a melhor coisa que aconteceu na minha vidinha. Não consigo imaginar o quão triste eu seria se não tivesse te encontrado. Tu me torna alguém melhor e me dá ainda mais vontade de evoluir todos os dias...
 
 Obrigado por ser minha parceira até nas maiores bobagens que eu faço, cada momento contigo vira uma lembrança especial pra mim, até as coisas mais simples. Eu amo teu jeitinho, teu sorriso, tua voz e como tu me ama da maneira mais linda. Espero poder comemorar todos os aniversários possíveis ao teu lado e continuar construindo nossa história juntos.`;
@@ -481,7 +568,7 @@ Obrigado por ser minha parceira até nas maiores bobagens que eu faço, cada mom
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: 0.12 }
     );
-    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    document.querySelectorAll('.fade-in, .varal-item').forEach(el => obs.observe(el));
   }
 
   /* ── CONFETES ── */
